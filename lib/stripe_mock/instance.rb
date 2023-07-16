@@ -51,6 +51,7 @@ module StripeMock
     include StripeMock::RequestHandlers::CountrySpec
     include StripeMock::RequestHandlers::Payouts
     include StripeMock::RequestHandlers::EphemeralKey
+    include StripeMock::RequestHandlers::TaxCalculations
     include StripeMock::RequestHandlers::TaxRates
     include StripeMock::RequestHandlers::Checkout
     include StripeMock::RequestHandlers::Checkout::Session
