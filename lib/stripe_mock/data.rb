@@ -170,6 +170,70 @@ module StripeMock
       }.merge(params)
     end
 
+    def self.mock_tax_calculation(params)
+      {
+        id: "taxcalc_1NULvVGqj7J6by2D4Z1FquDQ",
+        object: "tax.calculation",
+        amount_total: 1947,
+        currency: "usd",
+        customer: nil,
+        customer_details: {
+          address: {
+            line1: "354 Oyster Point Blvd",
+            line2: "",
+            postal_code: "94080",
+            state: "CA",
+            country: "US"
+          },
+          address_source: "shipping"
+        },
+        expires_at: 1689652037,
+        livemode: false,
+        shipping_cost: {
+          amount: 300
+        },
+        tax_amount_exclusive: 148,
+        tax_amount_inclusive: 0,
+        tax_breakdown: [
+          {
+            amount: 148,
+            inclusive: false,
+            tax_rate_details: {
+              country: "US",
+              percentage_decimal: "9.875",
+              state: "CA",
+              tax_type: "sales_tax"
+            },
+            taxability_reason: "standard_rated",
+            taxable_amount: 1499
+          },
+          {
+            amount: 0,
+            inclusive: false,
+            tax_rate_details: {
+              country: "US",
+              percentage_decimal: "0.0",
+              state: "CA",
+              tax_type: "sales_tax"
+            },
+            taxability_reason: "product_exempt",
+            taxable_amount: 0
+          }
+        ],
+        tax_date: 1689479237,
+        line_items: [
+          {
+            amount: 1499,
+            tax_code: "txcd_40060003",
+            reference: "Pepperoni Pizza"
+          }
+        ],
+        expand: [
+          "line_items"
+        ]
+      }.merge(params)
+    end
+
     def self.mock_customer(sources, params)
       cus_id = params[:id] || "test_cus_default"
       currency = params[:currency]
