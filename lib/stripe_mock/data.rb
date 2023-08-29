@@ -242,6 +242,14 @@ module StripeMock
         email: 'stripe_mock@example.com',
         description: 'an auto-generated stripe customer data mock',
         object: "customer",
+        address: {
+          city: nil,
+          country: nil,
+          line1: nil,
+          line2: nil,
+          postal_code: nil,
+          state: nil
+        },
         created: 1372126710,
         id: cus_id,
         name: nil,
