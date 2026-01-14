@@ -35,7 +35,7 @@ module StripeMock
         )
 
         if params[:confirm] && status == 'succeeded'
-          payment_intents[id] = succeeded_payment_intent(payment_intents[id])
+          payment_intents[id] = succeeded_payment_intent(payment_intents[id], params)
         end
 
         payment_intents[id].clone
@@ -178,7 +178,7 @@ module StripeMock
         }
       end
 
-      def succeeded_payment_intent(payment_intent)
+      def succeeded_payment_intent(payment_intent, params = {})
         payment_intent[:status] = 'succeeded'
         btxn = new_balance_transaction('txn', { source: payment_intent[:id] })
 
@@ -193,7 +193,11 @@ module StripeMock
           payment_method: payment_intent[:payment_method]
         )
 
-        payment_intent[:latest_charge] = charge_id
+        if params[:expand] && params[:expand].include?("latest_charge")
+          payment_intent[:latest_charge] = charges[charge_id]
+        else
+          payment_intent[:latest_charge] = charge_id
+        end
 
         payment_intent
       end
